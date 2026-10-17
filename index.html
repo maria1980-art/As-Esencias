@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5ef">
+  <meta name="description" content="Propuesta de web para Estudio Demo, salón de manicura y pedicura en Ciudad Demo.">
+  <title>Estudio Demo — Un momento para ti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f8f5ef;
+      --ink: #2a2525;
+      --muted: #756c68;
+      --wine: #713c4b;
+      --wine-dark: #542d39;
+      --rose: #ead8d1;
+      --sage: #66735d;
+      --line: #e8e1d8;
+      --white: #fffdf9;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+    img { display: block; width: 100%; }
+    .notice {
+      padding: 9px 20px;
+      color: #fff9f5;
+      background: var(--wine-dark);
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: .045em;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1200px, calc(100% - 48px));
+      min-height: 88px;
+      margin: auto;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid #b98a8c;
+      border-radius: 50%;
+      color: var(--wine);
+      font-family: var(--serif);
+      font-size: 25px;
+    }
+
+    .brand-name {
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: .015em;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav a:hover, .text-link:hover { color: var(--wine); }
+    .nav .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 21px;
+      border: 1px solid var(--wine);
+      border-radius: 999px;
+      color: white;
+      background: var(--wine);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background .2s, transform .2s;
+    }
+
+    .nav .nav-cta:hover, .button:hover {
+      color: white;
+      background: var(--wine-dark);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--white);
+      font: 600 13px var(--sans);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 590px;
+      overflow: hidden;
+      align-items: center;
+      background: #e6d5cc;
+    }
+
+    .hero-photo, .hero-shade {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-photo {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 48%;
+    }
+
+    .hero-shade {
+      background: linear-gradient(90deg, rgba(35, 27, 27, .72) 0%, rgba(35, 27, 27, .52) 42%, rgba(35, 27, 27, .08) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 70px 0 80px;
+      color: white;
+    }
+
+    .eyebrow {
+      margin: 0 0 17px;
+      color: #e9c9bf;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 500; }
+    h1 {
+      max-width: 620px;
+      margin-bottom: 18px;
+      font-size: clamp(48px, 7vw, 78px);
+      letter-spacing: -.035em;
+      line-height: 1.02;
+    }
+
+    .hero-copy {
+      max-width: 440px;
+      margin-bottom: 28px;
+      color: rgba(255,255,255,.89);
+      font-size: 16px;
+    }
+
+    .hero .button { border-color: white; color: var(--ink); background: white; }
+    .hero .button:hover { color: var(--wine-dark); background: #f4e9e2; }
+    .hero-note { margin: 15px 0 0; color: rgba(255,255,255,.77); font-size: 11px; }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      margin: -1px auto 0;
+      padding: 27px 24px;
+      background: var(--white);
+    }
+
+    .fact {
+      padding: 0 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .fact:first-child { padding-left: 0; }
+    .fact:last-child { border: 0; }
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .fact-value { font-size: 13px; font-weight: 600; }
+    .fact-value a { text-decoration: none; }
+
+    .section {
+      width: min(1100px, calc(100% - 48px));
+      margin: auto;
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 610px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-heading .eyebrow { color: var(--sage); }
+    h2 {
+      margin-bottom: 14px;
+      font-size: clamp(34px, 5vw, 52px);
+      letter-spacing: -.025em;
+      line-height: 1.1;
+    }
+
+    .section-heading > p:last-child { margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .service-card {
+      min-height: 223px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--white);
+    }
+
+    .service-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 24px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--wine);
+      background: #f1e6df;
+      font-size: 20px;
+    }
+
+    .service-card h3 { margin-bottom: 8px; font-size: 21px; }
+    .service-card p { margin-bottom: 19px; color: var(--muted); font-size: 12px; }
+    .service-price { color: var(--wine); font-size: 11px; font-weight: 700; }
+    .demo-disclaimer {
+      margin: 19px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .experience {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+      background: #efe6dc;
+    }
+
+    .experience-photo {
+      min-height: 420px;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .experience-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 70px clamp(32px, 7vw, 105px);
+    }
+
+    .experience-copy .eyebrow { color: var(--sage); }
+    .experience-copy h2 { max-width: 460px; }
+    .experience-copy > p:not(.eyebrow) { max-width: 420px; color: var(--muted); font-size: 14px; }
+    .experience-copy .button { align-self: flex-start; margin-top: 9px; }
+    .feature-list { display: grid; gap: 12px; margin: 20px 0 23px; padding: 0; list-style: none; }
+    .feature-list li { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+    .feature-list li::before { color: var(--sage); content: "✳"; }
+
+    .visit {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .visit h2 { margin-bottom: 18px; }
+    .visit-copy > p:not(.eyebrow) { color: var(--muted); font-size: 14px; }
+    .visit-details { display: grid; gap: 17px; margin: 26px 0 28px; }
+    .visit-detail { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; }
+    .visit-detail-icon { color: var(--wine); font-size: 17px; }
+    .visit-detail strong { display: block; margin-bottom: 2px; font-size: 12px; }
+    .visit-detail span, .visit-detail a { color: var(--muted); font-size: 12px; text-decoration: none; }
+    .visit-actions { display: flex; flex-wrap: wrap; gap: 11px; }
+    .button-outline { color: var(--wine); background: transparent; }
+    .button-outline:hover { color: white; }
+
+    .map-card {
+      position: relative;
+      display: grid;
+      min-height: 390px;
+      overflow: hidden;
+      place-items: center;
+      border: 1px solid #ddd2c7;
+      border-radius: 4px;
+      background:
+        linear-gradient(25deg, transparent 47%, rgba(255,255,255,.8) 48%, rgba(255,255,255,.8) 51%, transparent 52%),
+        linear-gradient(115deg, transparent 34%, rgba(255,255,255,.75) 35%, rgba(255,255,255,.75) 38%, transparent 39%),
+        linear-gradient(70deg, transparent 66%, rgba(255,255,255,.8) 67%, rgba(255,255,255,.8) 70%, transparent 71%),
+        #e8e6d9;
+    }
+
+    .map-card::before, .map-card::after {
+      position: absolute;
+      width: 140%;
+      height: 1px;
+      background: rgba(158, 163, 139, .55);
+      content: "";
+      transform: rotate(-25deg);
+    }
+
+    .map-card::after { transform: rotate(24deg); }
+    .map-label {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .map-pin {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border: 5px solid rgba(255,255,255,.85);
+      border-radius: 50% 50% 50% 0;
+      color: white;
+      background: var(--wine);
+      box-shadow: 0 5px 17px rgba(46,34,32,.18);
+      font-size: 20px;
+      transform: rotate(-45deg);
+    }
+
+    .map-pin span { transform: rotate(45deg); }
+    .map-caption {
+      padding: 9px 14px;
+      border-radius: 4px;
+      background: rgba(255,253,249,.93);
+      box-shadow: 0 3px 14px rgba(46,34,32,.08);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .map-disclaimer { position: absolute; right: 12px; bottom: 9px; color: #655f53; font-size: 9px; }
+    .closing {
+      padding: 76px 24px;
+      color: white;
+      background: var(--wine-dark);
+      text-align: center;
+    }
+
+    .closing .eyebrow { color: #e5bfb7; }
+    .closing h2 { max-width: 620px; margin: 0 auto 14px; }
+    .closing > p:not(.eyebrow) { margin-bottom: 25px; color: rgba(255,255,255,.78); font-size: 13px; }
+    .closing .button { color: var(--wine-dark); border-color: white; background: white; }
+    .closing .button:hover { background: #f4e9e2; }
+
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      width: min(1100px, calc(100% - 48px));
+      margin: auto;
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .footer a { text-decoration: none; }
+    .footer-links { display: flex; gap: 17px; }
+
+    @media (max-width: 760px) {
+      .site-header { min-height: 72px; }
+      .menu-toggle { display: inline-flex; }
+      .nav {
+        position: absolute;
+        top: 63px;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 18px 18px;
+        border: 1px solid var(--line);
+        background: var(--white);
+        box-shadow: 0 15px 25px rgba(42,37,37,.08);
+      }
+
+      .nav.is-open { display: flex; flex-direction: column; }
+      .nav a { padding: 12px 5px; }
+      .nav .nav-cta { margin-top: 6px; padding: 0 18px; }
+      .hero { min-height: 550px; }
+      .hero-shade { background: linear-gradient(90deg, rgba(35,27,27,.7), rgba(35,27,27,.26)); }
+      .hero-content { padding: 65px 0; }
+      .quick-facts { grid-template-columns: 1fr; gap: 16px; padding: 22px 24px; }
+      .fact, .fact:first-child { padding: 0; border: 0; }
+      .section { padding: 72px 0; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .service-card { min-height: 210px; padding: 19px; }
+      .service-icon { margin-bottom: 17px; }
+      .experience { grid-template-columns: 1fr; }
+      .experience-photo { min-height: 300px; max-height: 380px; }
+      .experience-copy { padding: 48px 24px 58px; }
+      .visit { grid-template-columns: 1fr; gap: 30px; }
+      .map-card { min-height: 300px; }
+    }
+
+    @media (max-width: 440px) {
+      .site-header, .hero-content, .section, .footer { width: calc(100% - 36px); }
+      .notice { font-size: 10px; }
+      .brand-name { font-size: 19px; }
+      .hero { min-height: 520px; }
+      .hero-copy { font-size: 14px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 0; }
+      .service-icon { margin-bottom: 14px; }
+      .visit-actions { align-items: stretch; flex-direction: column; }
+      .visit-actions .button { width: 100%; }
+      .footer { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="notice" id="demo-notice"></div>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Estudio Demo, ir al inicio">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <span class="brand-name" id="brand-name"></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menú</button>
+    <nav class="nav" id="main-nav" aria-label="Navegación principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#salon">El salón</a>
+      <a href="#visitanos">Dónde estamos</a>
+      <a class="nav-cta" data-phone-link href="#">Llámanos <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <img class="hero-photo" src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&amp;fit=crop&amp;w=2000&amp;q=85" alt="Manicura cuidada en tonos naturales" fetchpriority="high">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow" id="hero-eyebrow"></p>
+        <h1 id="hero-title"></h1>
+        <p class="hero-copy" id="hero-copy"></p>
+        <a class="button" data-phone-link href="#">Consulta tu cita <span aria-hidden="true">↗</span></a>
+        <p class="hero-note">Propuesta de diseño · textos e imágenes de muestra</p>
+      </div>
+    </section>
+
+    <div class="quick-facts" aria-label="Información rápida">
+      <div class="fact">
+        <span class="fact-label">Encuéntranos</span>
+        <span class="fact-value" id="short-address"></span>
+      </div>
+      <div class="fact">
+        <span class="fact-label">Especialidad</span>
+        <span class="fact-value">Manicura y pedicura</span>
+      </div>
+      <div class="fact">
+        <span class="fact-label">Citas e información</span>
+        <span class="fact-value"><a data-phone-link href="#" id="phone-display"></a></span>
+      </div>
+    </div>
+
+    <section class="section" id="servicios">
+      <div class="section-heading">
+        <p class="eyebrow">Cuida de ti</p>
+        <h2>Pequeños detalles,<br>un gran momento</h2>
+        <p>Una selección de servicios para manos y pies. Tratamientos y precios orientativos pendientes de confirmar con el salón.</p>
+      </div>
+      <div class="service-grid" id="service-grid"></div>
+      <p class="demo-disclaimer">Servicios y precios de ejemplo para esta propuesta. Consulta disponibilidad y tarifas directamente con Estudio Demo.</p>
+    </section>
+
+    <section class="experience" id="salon">
+      <img class="experience-photo" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Detalle de uñas esmaltadas con un acabado cuidado" loading="lazy">
+      <div class="experience-copy">
+        <p class="eyebrow">Tu ratito, a tu manera</p>
+        <h2>Un espacio para parar y disfrutar</h2>
+        <p>Un diseño cálido y cercano para presentar el salón y sus cuidados. El texto definitivo se puede adaptar a la historia y al estilo de Estudio Demo.</p>
+        <ul class="feature-list">
+          <li>Atención personalizada</li>
+          <li>Manos y pies cuidados con mimo</li>
+          <li>Productos y técnicas por confirmar</li>
+        </ul>
+        <a class="button button-outline" data-facebook-link href="#" target="_blank" rel="noreferrer">Conócenos en Facebook <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section visit" id="visitanos">
+      <div class="visit-copy">
+        <p class="eyebrow">Estamos en Ciudad Demo</p>
+        <h2>Ven a vernos</h2>
+        <p>Estamos en el centro de Ciudad Demo. Llámanos para consultar horarios, servicios o disponibilidad de cita.</p>
+        <div class="visit-details">
+          <div class="visit-detail">
+            <span class="visit-detail-icon" aria-hidden="true">⌖</span>
+            <div><strong>Dirección</strong><span id="full-address"></span></div>
+          </div>
+          <div class="visit-detail">
+            <span class="visit-detail-icon" aria-hidden="true">☎</span>
+            <div><strong>Teléfono</strong><a data-phone-link href="#" id="phone-detail"></a></div>
+          </div>
+          <div class="visit-detail">
+            <span class="visit-detail-icon" aria-hidden="true">◷</span>
+            <div><strong>Horario</strong><span id="hours"></span></div>
+          </div>
+        </div>
+        <div class="visit-actions">
+          <a class="button" data-map-link href="#" target="_blank" rel="noreferrer">Cómo llegar <span aria-hidden="true">↗</span></a>
+          <a class="button button-outline" data-facebook-link href="#" target="_blank" rel="noreferrer">Facebook</a>
+        </div>
+      </div>
+      <a class="map-card" data-map-link href="#" target="_blank" rel="noreferrer" aria-label="Abrir la ubicación de Estudio Demo en Google Maps">
+        <span class="map-label">
+          <span class="map-pin" aria-hidden="true"><span>✦</span></span>
+          <span class="map-caption">Estudio Demo · Ciudad Demo</span>
+        </span>
+        <span class="map-disclaimer">Ilustración de ubicación · abrir Google Maps</span>
+      </a>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">Un momento para ti</p>
+      <h2>¿Hablamos de tu próxima cita?</h2>
+      <p>Llámanos y te contamos los servicios disponibles.</p>
+      <a class="button" data-phone-link href="#">Llamar al salón <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> <span id="footer-name"></span> · Propuesta de muestra, pendiente de aprobación.</span>
+    <span class="footer-links">
+      <a data-facebook-link href="#" target="_blank" rel="noreferrer">Facebook</a>
+      <a data-map-link href="#" target="_blank" rel="noreferrer">Google Maps</a>
+    </span>
+  </footer>
+
+  <script>
+    // Edita estos datos para actualizar textos, contacto, servicios y precios.
+    const BUSINESS = {
+      name: "Estudio Demo",
+      town: "Ciudad Demo",
+      address: "Calle Ejemplo, 123, 00000 Ciudad Demo",
+      phoneDisplay: "+1 (202) 555-0142",
+      phoneLink: "+12025550142",
+      facebook: "https://example.com/red-social",
+      maps: "https://maps.google.com/?q=Ciudad+Demo",
+      hours: "Horario por confirmar · consulta por teléfono",
+      notice: "PROPUESTA DE MUESTRA · Contenidos, servicios y precios de ejemplo pendientes de validar",
+      heroEyebrow: "Manicura & pedicura · Ciudad Demo",
+      heroTitle: "Un momento<br>para ti.",
+      heroCopy: "Cuidado para tus manos y pies en un espacio pensado para bajar el ritmo y sentirte bien.",
+      services: [
+        { icon: "✧", name: "Manicura", description: "Un cuidado especial para tus manos y uñas.", price: "Desde 18 € · ejemplo" },
+        { icon: "◌", name: "Pedicura", description: "Un momento de cuidado y bienestar para tus pies.", price: "Desde 24 € · ejemplo" },
+        { icon: "✳", name: "Reconstrucción de uñas", description: "Da forma y estilo a tus uñas con un acabado cuidado.", price: "Desde 35 € · ejemplo" },
+        { icon: "❋", name: "Cuidado de cutículas", description: "Un detalle esencial para unas manos cuidadas.", price: "Consultar · ejemplo" },
+        { icon: "♡", name: "Spa de manos", description: "Un extra de mimo y confort para tus manos.", price: "Desde 20 € · ejemplo" },
+        { icon: "❀", name: "Spa de pies", description: "Desconecta un rato y disfruta de un cuidado especial.", price: "Desde 28 € · ejemplo" }
+      ]
+    };
+
+    document.title = `${BUSINESS.name} — Un momento para ti`;
+    document.getElementById("demo-notice").textContent = BUSINESS.notice;
+    document.getElementById("brand-name").textContent = BUSINESS.name;
+    document.getElementById("hero-eyebrow").textContent = BUSINESS.heroEyebrow;
+    document.getElementById("hero-title").innerHTML = BUSINESS.heroTitle;
+    document.getElementById("hero-copy").textContent = BUSINESS.heroCopy;
+    document.getElementById("short-address").textContent = `${BUSINESS.town} · Calle Ejemplo, 123`;
+    document.getElementById("full-address").textContent = BUSINESS.address;
+    document.getElementById("hours").textContent = BUSINESS.hours;
+    document.getElementById("phone-display").textContent = BUSINESS.phoneDisplay;
+    document.getElementById("phone-detail").textContent = BUSINESS.phoneDisplay;
+    document.getElementById("footer-name").textContent = BUSINESS.name;
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll("[data-phone-link]").forEach((link) => { link.href = `tel:${BUSINESS.phoneLink}`; });
+    document.querySelectorAll("[data-facebook-link]").forEach((link) => { link.href = BUSINESS.facebook; });
+    document.querySelectorAll("[data-map-link]").forEach((link) => { link.href = BUSINESS.maps; });
+
+    const serviceGrid = document.getElementById("service-grid");
+    BUSINESS.services.forEach((service) => {
+      const card = document.createElement("article");
+      card.className = "service-card";
+      const icon = document.createElement("span");
+      icon.className = "service-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = service.icon;
+      const title = document.createElement("h3");
+      title.textContent = service.name;
+      const description = document.createElement("p");
+      description.textContent = service.description;
+      const price = document.createElement("span");
+      price.className = "service-price";
+      price.textContent = service.price;
+      card.append(icon, title, description, price);
+      serviceGrid.append(card);
+    });
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mainNav = document.getElementById("main-nav");
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      mainNav.classList.toggle("is-open", !isOpen);
+    });
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuToggle.setAttribute("aria-expanded", "false");
+        mainNav.classList.remove("is-open");
+      });
+    });
+  </script>
+</body>
+</html>
